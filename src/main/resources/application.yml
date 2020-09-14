@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    stream:
+      function:
+        definition: sendMessageSupplier;sendMessageConsumer
+      bindings:
+        sendMessageSupplier-out-0:
+          destination: sendMessage
+        sendMessageConsumer-in-0:
+          destination: sendMessage
+      default-binder: kafka
+      kafka:
+        binder:
+          brokers: localhost:9092
