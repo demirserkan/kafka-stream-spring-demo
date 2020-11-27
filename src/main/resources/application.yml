@@ -10,5 +10,9 @@ spring:
           destination: sendMessage
       default-binder: kafka
       kafka:
+        bindings:
+          sendMessageConsumer-in-0:
+            enableDlq: true
+            dlqName: dlq
         binder:
           brokers: localhost:9092
