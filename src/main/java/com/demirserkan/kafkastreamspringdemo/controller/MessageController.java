@@ -1,7 +1,7 @@
 package com.demirserkan.kafkastreamspringdemo.controller;
 
 import com.demirserkan.kafkastreamspringdemo.domain.Message;
-import com.demirserkan.kafkastreamspringdemo.handler.EmitterProcessorHandler;
+import com.demirserkan.kafkastreamspringdemo.handler.ProcessorHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class MessageController {
 
-    private final EmitterProcessorHandler emitterProcessorHandler;
+    private final ProcessorHandler processorHandler;
 
     @PostMapping("/message")
     public String sendMessage (@RequestParam String message,
@@ -21,7 +21,7 @@ public class MessageController {
         sendMessage.setMessageContent(message);
         sendMessage.setMessageId(messageId);
 
-        emitterProcessorHandler.emitSendMessage(sendMessage);
+        processorHandler.emitSendMessage(sendMessage);
 
         return message;
     }
